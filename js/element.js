@@ -22,4 +22,4 @@ const element = myReact.createElement(
     'Hello, world!'
 );
 
-document.getElementById("myDiv").innerHTML="<"+element.type+">"+element.props.children+"</"+element.type+">";
+document.getElementById("myDiv").innerHTML="<"+element.type+" class="+element.props.className+">"+element.props.children+"</"+element.type+">";
