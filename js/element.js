@@ -38,3 +38,6 @@ function createHtmlString(elementObject) {
 
 document.getElementById("myDiv").innerHTML=createHtmlString(elementOne);
 document.getElementById("myDiv").innerHTML+=createHtmlString(elementTwo);
+document.getElementById("myDiv").innerHTML+=createHtmlString(elementTwo);
+document.getElementById("myDiv").innerHTML+=createHtmlString(elementTwo);
+document.getElementById("myDiv").innerHTML+=createHtmlString(elementTwo);
