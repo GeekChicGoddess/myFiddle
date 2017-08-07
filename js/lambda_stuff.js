@@ -47,8 +47,13 @@ const one = f => x => f(x);
 const two = f => x => f(f(x));
 const three = f => x => f(f(f(x)));
 
-let res = calculate(three);
-console.log(res)
+let res = calculate(zero);
+// let res1 = (f => f(x => x+ 1)(100))(f => x => f(f(x)));
+console.log(res);
+console.log( (f => x => f(x))(x => x+ 1)(0));
+console.log((x => x+ 1)(0));
+console.log((x => x+ 1)((x => x+ 1)(0)));
+// console.log(res1);
 
 const add = f => x => y => z => x(y)(f(y)(z));
 let result = add(one)(two);
