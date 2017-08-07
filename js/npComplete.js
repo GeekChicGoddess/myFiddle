@@ -7,30 +7,62 @@ function knapsack(weightLimit, items){
     var totalvalue =0;
     var totalweight=0;
     var numberOfItems=0;
-    var itemNum=0;
+    var arrayOfObjectValues = [];
 
     items.forEach(function (item){
     var tempvalue= 0;
     var tempTotalWeight=0;
     var tempNumberOfItems = 0
-        console.log(item.weight);
     while((tempTotalWeight + item.weight) < weightLimit){
         tempTotalWeight += item.weight;
         tempvalue += item.value;
         tempNumberOfItems ++;
     }
-    console.log(tempTotalWeight);
-    if (tempvalue > totalvalue){
-        totalvalue = tempvalue;
-        totalweight = tempTotalWeight;
-        numberOfItems = tempNumberOfItems;
-        itemNum = item.itemNum
-    }
-    console.log(totalweight);
-    console.log(totalvalue);
-    console.log(numberOfItems);
-    console.log(itemNum);
+    arrayOfObjectValues.push({
+        itemNum: item.itemNum,
+        totalValue: tempvalue
     });
+    });
+
+    arrayOfObjectValues.sort(function(a, b){
+        return b.totalValue - a.totalValue;
+    });
+
+
+
+        arrayOfObjectValues.forEach(function(item){
+            var itemKeyNum = item.itemNum;
+            var tempvalue= 0;
+            var tempTotalWeight = 0;
+            var tempNumberOfItems = 0;
+            var parameterArrayObject = items.filter(function( obj ) {
+                return obj.itemNum == itemKeyNum;
+            });
+
+
+            while(((totalweight + parameterArrayObject[0].weight) < weightLimit) && (tempNumberOfItems < parameterArrayObject[0].available)){
+                tempTotalWeight += parameterArrayObject[0].weight;
+                totalweight += parameterArrayObject[0].weight;
+                totalvalue += parameterArrayObject[0].value;
+                tempvalue += parameterArrayObject[0].value;
+                tempNumberOfItems ++;
+                numberOfItems++;
+
+            }
+        var tempObj = {
+                itemNum: parameterArrayObject[0].itemNum,
+                value: tempvalue,
+                weight: tempTotalWeight,
+                used: tempNumberOfItems
+            };
+            console.log(tempObj);
+
+        });
+
+console.log("value " + totalvalue);
+console.log("weight " + totalweight);
+console.log("item count " + numberOfItems);
+
 
 
 }
