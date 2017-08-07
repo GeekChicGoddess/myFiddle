@@ -7,19 +7,17 @@ var stackout = [];
 
 function enqueue (number){
 
-     var numberOfPops= stackin.length;
+    var numberOfPops= stackin.length;
 
-     while (numberOfPops > 0){
-            stackout.push((stackin.pop()));
-            numberOfPops--;
+    while (numberOfPops > 0){
+        stackout.push((stackin.pop()));
+        numberOfPops--;
 
-     }
-
-
+    }
 
     stackin.push(number);
 
-     var numberOfReversePops = stackout.length-1;
+    var numberOfReversePops = stackout.length-1;
 
     while (numberOfReversePops > 0){
         stackin.push((stackout.pop()));
@@ -27,14 +25,10 @@ function enqueue (number){
 
     }
 
-
-
-
     console.log("stackin " + stackin);
     console.log("stackout " + stackout);
 
 }
-
 
 function dequeue (){
 
