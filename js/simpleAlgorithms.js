@@ -29,8 +29,8 @@ function bubbleSort(list) {
     }
     if(doItAgain)bubbleSort(list);
 }
-bubbleSort(list);
-console.log(list);
+// bubbleSort(list);
+// console.log(list);
 
 // ===================================================MERGE SORT    a Divide and Conquer approach, so at LEAST a O(log n) == this one is O(n log n)
 
@@ -84,4 +84,62 @@ function merge(left, right) {
     return result;
 };
 
-console.log(mergeSort(listToMergeSort));
+// console.log(mergeSort(listToMergeSort));
+
+// ================================QUICKSORT ===== uses pivot technique  worst case O(n^2) best case O(n log n)
+
+var listToQuickSort = [23, 4, 42, 15,18, 9, 1];
+
+function quicksort (list){
+    console.log(list);
+    if (list.length < 2) return list;
+
+    var left = [], right = [];
+
+    var pivot = list.length -1;
+
+    var pivotValue = list[pivot];
+    console.log("pivot "+ pivotValue);
+    // remove pivot from list so we don't compare it
+    list = list.slice(0, pivot).concat(list.slice(pivot+1));
+
+
+    for (var i = 0; i < list.length; i++){
+        if (list[i] < pivotValue){
+            left.push(list[i])
+        }else {
+            right.push(list[i]);
+        }
+    }
+    console.log("left "+ left + " right "+right);
+
+    return quicksort(left).concat([pivotValue], quicksort(right));
+
+}
+
+// console.log(quicksort(listToQuickSort));
+
+// ===================SELECTION SORT ============= O(1) - O(n^2) ===============
+
+var listToSelectionSort = [23, 4, 42, 15,18, 9, 1];
+
+function selectionSort(list) {
+
+    for (var i = 0; i < list.length - 1; i++){
+        currentMinIndex = i;
+
+        for (var x = currentMinIndex + 1; x < list.length; x++){
+            if (list[x] < list[currentMinIndex]){
+                currentMinIndex = x;
+            }
+        }
+        if (currentMinIndex != i){
+            var oldMinValue = list[i];
+            list[i] = list[currentMinIndex];
+            list[currentMinIndex] = oldMinValue;
+        }
+    }
+    return list;
+}
+
+console.log(selectionSort(listToSelectionSort));
